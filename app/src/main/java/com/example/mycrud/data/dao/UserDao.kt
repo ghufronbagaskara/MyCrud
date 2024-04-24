@@ -9,7 +9,7 @@ import com.example.mycrud.data.entity.User
 
 @Dao
 interface UserDao {
-    @Query("SELECT * FROM user")
+    @Query("SELECT * FROM user ORDER BY full_name ASC") // ASC or DESC
     fun getAll(): List<User>
 
     @Query("SELECT * FROM user WHERE full_name LIKE '%' || :search || '%'")

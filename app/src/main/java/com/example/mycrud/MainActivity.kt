@@ -79,6 +79,18 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, "Silahkan isi terlebih dahulu", Toast.LENGTH_SHORT).show()
             }
         }
+
+        binding.etSearch.setOnKeyListener{ v, keyCode, event ->
+            if (binding.etSearch.text.isNotEmpty()){
+                searchData(binding.etSearch.text.toString())
+            } else{
+                getData()
+            }
+            true
+        }
+
+
+
     }
 
     override fun onResume() {
