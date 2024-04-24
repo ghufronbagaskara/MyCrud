@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.provider.ContactsContract.CommonDataKinds.Phone
 import android.widget.EditText
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -69,6 +70,15 @@ class MainActivity : AppCompatActivity() {
         binding.floatingActionButton.setOnClickListener{
             startActivity(Intent(this, EditorActivity::class.java))
         }
+
+        binding.btnSearch.setOnClickListener{
+            if (binding.etSearch.text.isNotEmpty()){
+                searchData(binding.etSearch.text.toString())
+            }else{
+                getData()
+                Toast.makeText(applicationContext, "Silahkan isi terlebih dahulu", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     override fun onResume() {
@@ -80,6 +90,13 @@ class MainActivity : AppCompatActivity() {
     fun getData(){
         list.clear()
         list.addAll(dataBase.userDao().getAll())
+        adapter.notifyDataSetChanged()
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun searchData(search: String){
+        list.clear()
+        list.addAll(dataBase.userDao().searchByName(search))
         adapter.notifyDataSetChanged()
     }
 

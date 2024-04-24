@@ -12,6 +12,9 @@ interface UserDao {
     @Query("SELECT * FROM user")
     fun getAll(): List<User>
 
+    @Query("SELECT * FROM user WHERE full_name LIKE '%' || :search || '%'")
+    fun searchByName(search: String) : List<User>
+
     @Query("SELECT * FROM user WHERE uid IN (:userIds)")
     fun loadAllByIds(userIds: IntArray): List<User>
 
