@@ -25,17 +25,39 @@ class EditorActivity : AppCompatActivity() {
 
         dataBase = AppDatabase.getInstance(applicationContext)
 
+        val intent = intent.extras
+        if (intent!=null){
+            val id = intent.getInt("id")
+            var user = dataBase.userDao().get(id)
+
+            binding.etFullName.setText(user.fullName)
+            binding.etEmail.setText(user.email)
+            binding.etPhone.setText(user.phone)
+        }
+
         binding.btnSave.setOnClickListener() {
             if (binding.etFullName.text.isNotEmpty() && binding.etEmail.text.isNotEmpty() && binding.etPhone.text.isNotEmpty()) {
-                Log.d("tes", "tes terbaca")
-                dataBase.userDao().insertAll(
-                    User(
-                        null,
-                        binding.etFullName.text.toString(),
-                        binding.etEmail.text.toString(),
-                        binding.etPhone.text.toString()
+                if (intent != null){
+                    // update data
+                    dataBase.userDao().update(
+                        User(
+                            intent.getInt("id", 0),
+                            binding.etFullName.text.toString(),
+                            binding.etEmail.text.toString(),
+                            binding.etPhone.text.toString()
+                        )
                     )
-                )
+                }else {
+                    // insert data"
+                    dataBase.userDao().insertAll(
+                        User(
+                            null,
+                            binding.etFullName.text.toString(),
+                            binding.etEmail.text.toString(),
+                            binding.etPhone.text.toString()
+                        )
+                    )
+                }
                 finish()
             } else {
                 Toast.makeText(applicationContext, "Silahkan isi semua data", Toast.LENGTH_SHORT)

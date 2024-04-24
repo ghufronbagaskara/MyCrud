@@ -10,15 +10,23 @@ import com.example.mycrud.data.entity.User
 import com.example.mycrud.databinding.RowUserBinding
 
 class UserAdapter(var list: List<User>) : RecyclerView.Adapter<UserAdapter.ViewHolder>() {
+    private lateinit var dialog: Dialog
 
     interface Dialog {
         fun onClick(position: Int)
     }
+    fun setDialog(dialog: Dialog){
+        this.dialog = dialog
+    }
+
     inner class ViewHolder(private val binding: RowUserBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(user: User){
             binding.tvFullName.text = user.fullName
             binding.tvEmail.text = user.email
             binding.tvPhone.text = user.phone
+            binding.root.setOnClickListener {
+                dialog.onClick(layoutPosition)
+            }
         }
     }
 

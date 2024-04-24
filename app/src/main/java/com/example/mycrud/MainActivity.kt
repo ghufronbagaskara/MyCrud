@@ -1,11 +1,13 @@
 package com.example.mycrud
 
 import android.annotation.SuppressLint
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.provider.ContactsContract.CommonDataKinds.Phone
 import android.widget.EditText
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -32,6 +34,33 @@ class MainActivity : AppCompatActivity() {
 
         dataBase = AppDatabase.getInstance(applicationContext)
         adapter = UserAdapter(list)
+        adapter.setDialog(object: UserAdapter.Dialog{
+            override fun onClick(position: Int) {
+                // create a dialog view
+                val dialog = AlertDialog.Builder(this@MainActivity)
+                dialog.setTitle(list[position].fullName)
+                dialog.setItems(R.array.items_option, DialogInterface.OnClickListener{ dialog, which->
+                    when(which){
+                        0 ->{ //edit
+                            val intent = Intent(this@MainActivity, EditorActivity::class.java)
+                            intent.putExtra("id", list[position].uid)
+                            startActivity(intent)
+                        }
+                        1 -> { //delete
+                            dataBase.userDao().delete(list[position])
+                            getData()
+                        }
+                        2-> { //cancel
+                            dialog.dismiss()
+                        }
+                    }
+                })
+                // show dialog
+                val dialogView = dialog.create()
+                dialogView.show()
+            }
+
+        })
 
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(applicationContext, VERTICAL, false)
