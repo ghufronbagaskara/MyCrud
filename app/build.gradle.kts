@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.googleDevtoolsKsp)
+    alias(libs.plugins.googleServices)
 }
 
 android {
@@ -46,11 +47,20 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.annotation)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    // Room
     implementation(libs.androidx.room)
     annotationProcessor(libs.androidx.roomCompiler)
     ksp(libs.androidx.roomCompiler)
+
+    // Firebase
+    implementation(libs.firebaseAnalytics)
+    implementation(platform(libs.firebaseBom))
+    implementation(libs.firebaseAuth)
 }

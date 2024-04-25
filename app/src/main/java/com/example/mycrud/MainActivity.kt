@@ -4,16 +4,11 @@ import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import android.provider.ContactsContract.CommonDataKinds.Phone
 import android.text.Editable
 import android.text.TextWatcher
-import android.widget.EditText
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
@@ -21,6 +16,7 @@ import com.example.mycrud.adapter.UserAdapter
 import com.example.mycrud.data.AppDatabase
 import com.example.mycrud.data.entity.User
 import com.example.mycrud.databinding.ActivityMainBinding
+import com.example.mycrud.ui.editor.EditorActivity
 
 class MainActivity : AppCompatActivity() {
 

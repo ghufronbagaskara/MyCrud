@@ -1,13 +1,8 @@
-package com.example.mycrud
+package com.example.mycrud.ui.editor
 
 import android.os.Bundle
-import android.util.Log
-import android.widget.EditText
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.mycrud.data.AppDatabase
 import com.example.mycrud.data.entity.User
 import com.example.mycrud.databinding.ActivityEditorBinding

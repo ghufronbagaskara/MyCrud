@@ -13,7 +13,14 @@
         android:theme="@style/Theme.MyCrud"
         tools:targetApi="31">
         <activity
-            android:name=".EditorActivity"
+            android:name=".ui.register.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:exported="false"
+            android:label="@string/title_activity_login" />
+        <activity
+            android:name=".ui.editor.EditorActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

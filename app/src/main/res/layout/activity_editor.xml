@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:padding="14dp"
     android:layout_marginTop="26dp"
-    tools:context=".EditorActivity">
+    tools:context=".ui.editor.EditorActivity">
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
