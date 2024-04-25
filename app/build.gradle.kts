@@ -61,6 +61,6 @@ dependencies {
 
     // Firebase
     implementation(libs.firebaseAnalytics)
-    implementation(platform(libs.firebaseBom))
     implementation(libs.firebaseAuth)
+    implementation(platform(libs.firebaseBom))
 }

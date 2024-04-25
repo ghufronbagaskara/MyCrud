@@ -17,6 +17,8 @@ import com.example.mycrud.data.AppDatabase
 import com.example.mycrud.data.entity.User
 import com.example.mycrud.databinding.ActivityMainBinding
 import com.example.mycrud.ui.editor.EditorActivity
+import com.example.mycrud.ui.login.LoginActivity
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     private var list = mutableListOf<User>()
     private lateinit var adapter: UserAdapter
     private lateinit var dataBase: AppDatabase
+    private val firebaseAuth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,17 +67,8 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.layoutManager = LinearLayoutManager(applicationContext, VERTICAL, false)
         binding.recyclerView.addItemDecoration(DividerItemDecoration(applicationContext, VERTICAL))
 
-        binding.floatingActionButton.setOnClickListener{
+        binding.flaAddData.setOnClickListener{
             startActivity(Intent(this, EditorActivity::class.java))
-        }
-
-        binding.btnSearch.setOnClickListener{
-            if (binding.etSearch.text.isNotEmpty()){
-                searchData(binding.etSearch.text.toString())
-            }else{
-                getData()
-                Toast.makeText(applicationContext, "Silahkan isi terlebih dahulu", Toast.LENGTH_SHORT).show()
-            }
         }
 
         binding.etSearch.addTextChangedListener(object: TextWatcher{
@@ -87,9 +81,30 @@ class MainActivity : AppCompatActivity() {
                     searchData(s.toString())
                 } else{
                     getData()
+                    finish()
                 }
             }
         })
+
+        //        binding.btnSearch.setOnClickListener{
+//            if (binding.etSearch.text.isNotEmpty()){
+//                searchData(binding.etSearch.text.toString())
+//            }else{
+//                getData()
+//                Toast.makeText(applicationContext, "Silahkan isi terlebih dahulu", Toast.LENGTH_SHORT).show()
+//            }
+//        }
+        val firebaseUser = firebaseAuth.currentUser
+        if (firebaseUser != null){
+            binding.tvGreeting.text = "Hi " + firebaseUser.displayName + ", have a nice day"
+        } else {
+            startActivity(Intent(this, LoginActivity::class.java))
+        }
+        binding.btnLogout.setOnClickListener{
+            firebaseAuth.signOut()
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
 
     }
 
