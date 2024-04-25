@@ -5,6 +5,8 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.provider.ContactsContract.CommonDataKinds.Phone
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -29,7 +31,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -80,16 +81,19 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        binding.etSearch.setOnKeyListener{ v, keyCode, event ->
-            if (binding.etSearch.text.isNotEmpty()){
-                searchData(binding.etSearch.text.toString())
-            } else{
-                getData()
+        binding.etSearch.addTextChangedListener(object: TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun afterTextChanged(s: Editable?) {
+                if (s != null && s.isNotEmpty()){
+                    searchData(s.toString())
+                } else{
+                    getData()
+                }
             }
-            true
-        }
-
-
+        })
 
     }
 

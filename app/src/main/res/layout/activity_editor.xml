@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="14dp"
-    android:paddingTop="36dp"
+    android:layout_marginTop="26dp"
     tools:context=".EditorActivity">
 
     <com.google.android.material.textfield.TextInputLayout
