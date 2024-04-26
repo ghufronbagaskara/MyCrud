@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        //        binding.btnSearch.setOnClickListener{
+//        binding.btnSearch.setOnClickListener{
 //            if (binding.etSearch.text.isNotEmpty()){
 //                searchData(binding.etSearch.text.toString())
 //            }else{

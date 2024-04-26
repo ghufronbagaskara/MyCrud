@@ -6,6 +6,15 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        getByName("debug") {
+            storeFile =
+                file("D:\\kowlej\\high level language\\Kotlin\\Android_Studio\\MyKeyStore\\CrudKeyStore.jks")
+            storePassword = "gufron2003"
+            keyAlias = "crudkeystore"
+            keyPassword = "gufron2003"
+        }
+    }
     namespace = "com.example.mycrud"
     compileSdk = 34
 
@@ -17,6 +26,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig = signingConfigs.getByName("debug")
     }
 
     buildTypes {
@@ -63,4 +73,5 @@ dependencies {
     implementation(libs.firebaseAnalytics)
     implementation(libs.firebaseAuth)
     implementation(platform(libs.firebaseBom))
+    implementation(libs.playServicesAuth) // google login dependencies
 }

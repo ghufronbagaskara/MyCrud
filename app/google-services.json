@@ -12,7 +12,20 @@
           "package_name": "com.example.mycrud"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "423579460503-vdb6r73caalc3qpj14r37ca9tl2j1ued.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mycrud",
+            "certificate_hash": "da650289e57b8a5c8a3de3a5290a07c821b7ac59"
+          }
+        },
+        {
+          "client_id": "423579460503-kpo61bg83i0f2gv35vsufdk9keq00hgf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCTNX_nqR3UZnZPzaEuZrue7z3XYy1CQXA"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "423579460503-kpo61bg83i0f2gv35vsufdk9keq00hgf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
